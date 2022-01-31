@@ -82,14 +82,7 @@ export function EventList() {
           >
             Save
           </Button>
-          <Button
-            color="inherit"
-            variant="primary"
-            sx={{ marginLeft: 1 }}
-            onClick={() =>  history.push("/add")}
-          >
-            Write what you did today...
-          </Button>
+         
         </div>
       </div>
       {value ? (

@@ -32,7 +32,7 @@ export function AddToDiary() {
     });
     const json = await response.json();
     if (json.success) {
-      history.push("/");
+      history.push("/diary");
     } else {
       alert(json.message);
     }

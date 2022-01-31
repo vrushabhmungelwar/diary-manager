@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { isExpired, decodeToken } from "react-jwt";
 import { useHistory } from "react-router-dom";
@@ -30,7 +31,16 @@ export function Diary() {
   useEffect(getData, [id]);
 
   return (
+    
     <div className="list-cont">
+     <Button
+            color="inherit"
+            variant="primary"
+            sx={{ marginLeft: 1 }}
+            onClick={() =>  history.push("/add")}
+          >
+            Write what you did today...
+          </Button>
       <div className="data-cont">
         {diary.map((eve) => (
           <div key={eve.date} className="events">
