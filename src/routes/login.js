@@ -61,12 +61,17 @@ export function Login() {
 
   return (
     <div>
+    <div className="demo">
+          <h3>Demo Credentials</h3>
+          <h5>Email: vrushabhmungelwar221@gmail.com</h5>
+          <h5>Password: vrushabh123</h5>
+        </div>
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Box
             sx={{
-              marginTop: 20,
+              marginTop: 10,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
