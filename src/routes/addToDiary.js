@@ -20,7 +20,7 @@ export function AddToDiary() {
   console.log(id)
 
   const Add = async (data) => {
-    const response = await fetch(`http://localhost:8000/diary`, {
+    const response = await fetch(`https://diary-manager-by-vrushabh.herokuapp.com/diary`, {
       method: "POST",
       body: JSON.stringify({
         userId: id,

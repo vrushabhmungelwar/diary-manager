@@ -22,7 +22,7 @@ export function EventList() {
 
   const id = myDecodedToken.id;
   const getData = () => {
-    fetch(`http://localhost:8000/event/${id}`)
+    fetch(`https://diary-manager-by-vrushabh.herokuapp.com/event/${id}`)
       .then((data) => data.json())
       .then((data) => {
         const array = JSON.stringify(data);
@@ -38,7 +38,7 @@ export function EventList() {
   const [value, setValue] = useState(null);
 
   async function Save(events) {
-    const response = await fetch(`http://localhost:8000/event/save`, {
+    const response = await fetch(`https://diary-manager-by-vrushabh.herokuapp.com/event/save`, {
       method: "POST",
       body: JSON.stringify({
         userId: id,

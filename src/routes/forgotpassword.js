@@ -35,7 +35,7 @@ export function Forgot() {
     });
 
   const ForgotPassword = async (values) => {
-    const response = await fetch(`http://localhost:8000/forgotPassword`, {
+    const response = await fetch(`https://diary-manager-by-vrushabh.herokuapp.com/forgotPassword`, {
       method: "POST",
       body: JSON.stringify({
         email: values.email,

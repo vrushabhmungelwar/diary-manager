@@ -45,7 +45,7 @@ export function SignUp() {
   const Post = async (values) => {
     try {
       console.log(values);
-      await fetch("http://localhost:8000/user/signup", {
+      await fetch("https://diary-manager-by-vrushabh.herokuapp.com/user/signup", {
         method: "POST",
         body: JSON.stringify({
           name: values.name,

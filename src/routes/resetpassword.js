@@ -45,7 +45,7 @@ export function Reset() {
     const id = localStorage.getItem("id");
     // console.log(token, id);
     const response = await fetch(
-      `http://localhost:8000/forgotPassword/resetpassword/${id}/${token}`,
+      `https://diary-manager-by-vrushabh.herokuapp.com/forgotPassword/resetpassword/${id}/${token}`,
       {
         method: "POST",
         body: JSON.stringify({

@@ -67,7 +67,7 @@ export function AddEvents() {
   });
 
   const AddEvent = async (values) => {
-    const response = await fetch(`http://localhost:8000/event`, {
+    const response = await fetch(`https://diary-manager-by-vrushabh.herokuapp.com/event`, {
       method: "POST",
       body: JSON.stringify({
         userId: values.userId,

@@ -18,7 +18,7 @@ export function Diary() {
   const id = myDecodedToken.id;
 
   const getData = () => {
-    fetch(`http://localhost:8000/diary/${id}`)
+    fetch(`https://diary-manager-by-vrushabh.herokuapp.com/diary/${id}`)
       .then((data) => data.json())
       .then((data) => {
         const array = JSON.stringify(data);
