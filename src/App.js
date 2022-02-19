@@ -77,8 +77,12 @@ function App() {
       </AppBar>
 
       <Switch>
-        <Route exact path="/" component={Login} />
-        <Route path="/login" component={Login} />
+        <Route exact path="/">
+          <Login setLogin={setLogin} />
+        </Route>
+        <Route path="/login">
+          <Login setLogin={setLogin} />
+        </Route>
         <Route path="/signUp" component={SignUp} />
         <Route path="/forgotpassword" component={Forgot} />
         <ProtectedRoute path="/addEvents" Proute={AddEvents} />
