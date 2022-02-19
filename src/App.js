@@ -9,13 +9,26 @@ import { EventList } from "./routes/eventlist";
 import { AppBar, Button, Toolbar } from "@mui/material";
 import { AddToDiary } from "./routes/addToDiary";
 import { Diary } from "./routes/diary";
+import { ProtectedRoute } from "./routes/ProtectedRoute";
+import { isExpired, decodeToken } from "react-jwt";
+import { useState } from "react";
 
 function App() {
   const history = useHistory();
-
+  const token = localStorage.getItem("token");
+  const myDecodedToken = decodeToken(token);
+  const isMyTokenExpired = isExpired(token);
+  const [login, setLogin] = useState(
+    myDecodedToken && isMyTokenExpired === false ? true : false
+  );
+  function Logout() {
+    localStorage.removeItem("token");
+    setLogin(false);
+    history.push("/login");
+  }
   return (
     <div className="App">
-      <AppBar position="static" style={{ marginBottom: "24px" }} >
+      <AppBar position="static" style={{ marginBottom: "24px" }}>
         <Toolbar variant="dense">
           <Button
             variant="text"
@@ -47,52 +60,32 @@ function App() {
             Diary
           </Button>
 
-          <Button
-            variant="text"
-            color="inherit"
-            sx = {{marginLeft:"auto"}}
-            onClick={() => history.push("/login")}
-          >
-            Login
-          </Button>
-          <Button
-            variant="text"
-            color="inherit"
-            onClick={() => history.push("/signUp")}
-          >
-            Signup
-          </Button>
+          {login === true ? (
+            <Button color="inherit" sx={{ ml: "auto" }} onClick={Logout}>
+              Logout
+            </Button>
+          ) : (
+            <Button
+              color="inherit"
+              sx={{ ml: "auto" }}
+              onClick={() => history.push("/login")}
+            >
+              Login
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
 
       <Switch>
-        <Route exact path="/">
-          <Login />
-        </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/signUp">
-          <SignUp />
-        </Route>
-        <Route path="/addEvents">
-          <AddEvents />
-        </Route>
-        <Route path="/forgotpassword">
-          <Forgot />
-        </Route>
-        <Route path="/resetpassword">
-          <Reset />
-        </Route>
-        <Route path="/list">
-          <EventList />
-        </Route>
-        <Route path="/add">
-          <AddToDiary />
-        </Route>
-        <Route path="/diary">
-          <Diary />
-        </Route>
+        <Route exact path="/" component={Login} />
+        <Route path="/login" component={Login} />
+        <Route path="/signUp" component={SignUp} />
+        <Route path="/forgotpassword" component={Forgot} />
+        <ProtectedRoute path="/addEvents" Proute={AddEvents} />
+        <ProtectedRoute path="/resetpassword" Proute={Reset} />
+        <ProtectedRoute path="/list" Proute={EventList} />
+        <ProtectedRoute path="/add" Proute={AddToDiary} />
+        <ProtectedRoute path="/diary" Proute={Diary} />
       </Switch>
     </div>
   );

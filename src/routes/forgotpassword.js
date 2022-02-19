@@ -10,7 +10,6 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { useHistory } from "react-router-dom";
 
-
 export const formValidationSchema = yup.object({
   email: yup
     .string()
@@ -35,21 +34,24 @@ export function Forgot() {
     });
 
   const ForgotPassword = async (values) => {
-    const response = await fetch(`https://diary-manager-by-vrushabh.herokuapp.com/forgotPassword`, {
-      method: "POST",
-      body: JSON.stringify({
-        email: values.email,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `https://diary-manager-by-vrushabh.herokuapp.com/forgotPassword`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          email: values.email,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const json = await response.json();
     if (json.success) {
       localStorage.setItem("resetToken", json.token);
       localStorage.setItem("id", json.id);
       history.push("/login");
-      alert("An email sent to your account please verify")
+      alert("An email sent to your account please verify");
     } else {
       alert("No User with this Email");
     }

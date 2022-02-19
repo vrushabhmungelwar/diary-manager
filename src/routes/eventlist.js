@@ -13,7 +13,6 @@ export function EventList() {
   const isMyTokenExpired = isExpired(token);
 
   if (isMyTokenExpired) {
-    alert("Need to login first");
     history.push("/login");
   }
 
