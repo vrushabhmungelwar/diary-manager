@@ -44,13 +44,6 @@ function App() {
           >
             Events
           </Button>
-          <Button
-            variant="text"
-            color="inherit"
-            onClick={() => history.push("/addEvents")}
-          >
-            Add Event
-          </Button>
 
           <Button
             variant="text"

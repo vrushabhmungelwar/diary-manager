@@ -37,16 +37,19 @@ export function EventList() {
   const [value, setValue] = useState(null);
 
   async function Save(events) {
-    const response = await fetch(`https://diary-manager-by-vrushabh.herokuapp.com/event/save`, {
-      method: "POST",
-      body: JSON.stringify({
-        userId: id,
-        events: events,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `https://diary-manager-by-vrushabh.herokuapp.com/event/save`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          userId: id,
+          events: events,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const json = await response.json();
     if (json.success) {
       alert("saved");
@@ -74,14 +77,20 @@ export function EventList() {
 
         <div>
           <Button
+            variant="text"
+            color="primary"
+            onClick={() => history.push("/addEvents")}
+          >
+            Add Event
+          </Button>
+          <Button
             color="success"
-            variant="outlined"
-            sx={{ marginLeft: 50 }}
+            variant="text"
+            // sx={{ marginLeft: 50 }}
             onClick={() => Save(events)}
           >
             Save
           </Button>
-         
         </div>
       </div>
       {value ? (
