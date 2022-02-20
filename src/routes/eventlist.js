@@ -6,6 +6,7 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import { Button, TextField } from "@mui/material";
 import { DatePicker } from "@mui/lab";
 import { Events } from "./events";
+import frLocale from "date-fns/locale/fr";
 export function EventList() {
   const history = useHistory();
   const token = localStorage.getItem("token");
@@ -16,7 +17,6 @@ export function EventList() {
     history.push("/login");
   }
 
-  // const [data, setData] = useState({});
   const [events, setEvents] = useState([]);
 
   const id = myDecodedToken.id;
@@ -26,14 +26,11 @@ export function EventList() {
       .then((data) => {
         const array = JSON.stringify(data);
         const array1 = JSON.parse(array);
-        // setData(array1);
         setEvents(array1.events);
       });
   };
   useEffect(getData, [id]);
 
-  // console.log(data);
-  // console.log(events);
   const [value, setValue] = useState(null);
 
   async function Save(events) {
@@ -62,9 +59,9 @@ export function EventList() {
     <div className="list-cont">
       <div className="date-save-cont">
         <div className="Date">
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <LocalizationProvider dateAdapter={AdapterDateFns} locale={frLocale}>
             <DatePicker
-              inputFormat="dd-MM-yyyy"
+              mask="__/__/____"
               label="Select Date"
               value={value}
               onChange={(newValue) => {
@@ -83,12 +80,7 @@ export function EventList() {
           >
             Add Event
           </Button>
-          <Button
-            color="success"
-            variant="text"
-            // sx={{ marginLeft: 50 }}
-            onClick={() => Save(events)}
-          >
+          <Button color="success" variant="text" onClick={() => Save(events)}>
             Save
           </Button>
         </div>
